@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table w-50">
+    <tr>
+        <th scope="col">цвет</th>
+        <th scope="col">центроид</th>
+    </tr>
+    {% for i in res %}
+    <tr>
+        <td style="background: rgb({{ i[0][0] }}, {{ i[0][1] }}, {{ i[0][2] }})"></td>
+        <td style="background: rgb({{ cl_center[i[1]][0] }}, {{ cl_center[i[1]][1] }}, {{ cl_center[i[1]][2] }})"></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<table class="table w-50">
+    <tr>
+        <th scope="col">моноцвет</th>
+        <th scope="col">моноцентроид</th>
+    </tr>
+    {% for j in res_mono %}
+        <tr>
+            <td style="background: rgb({{ j[0][0] }}, {{ j[0][1] }}, {{ j[0][2] }})"></td>
+            <td style="background: rgb({{ cl_center_mono[j[1]][0] }}, {{ cl_center_mono[j[1]][1] }}, {{ cl_center_mono[j[1]][2] }})"></td>
+        </tr>
+        {% endfor %}
+</table>
+
+
+<style>
+    td {
+        width: 15vw;
+        height: 15vh;
+    }
+
+    th {
+        text-align: center;
+    }
+</style>
+{% endblock %}
