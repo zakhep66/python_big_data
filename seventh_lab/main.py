@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 
 # X, y = make_blobs(n_samples=1000, n_features=2, centers=[(20, 20), (40, 40)], cluster_std=[2.2, 2.0])
 # # print(X.shape)
-# print('Хуй', X)
-# print('хУй', y)
+# print('X', X)
+# print('Y', y)
 #
 # plt.figure()
 # plt.scatter(X[:, 0], X[:, 1], s=10, cmap='rainbow', c=y)
