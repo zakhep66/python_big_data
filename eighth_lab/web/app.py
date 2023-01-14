@@ -20,10 +20,21 @@ def hello_world():
 
     data_color = pandas.DataFrame(excel_data, columns=['r', 'g', 'b']).values.tolist()
     res = []
-    pred_count = 0
-    for i in data_color:
-        res.append([i, pred[pred_count]])
-        pred_count += 1
+
+    # все кластеры друг за другом
+    for i in range(len(kmeans.cluster_centers_)):
+        pred_count = 0
+        print(i, 'мега')
+        for row in data_color:
+            if pred[pred_count] == i:
+                res.append([row, pred[pred_count]])
+            pred_count += 1
+
+    # все цвета по порядку изначальной последовательности
+    # pred_count = 0
+    # for i in data_color:
+    #     res.append([i, pred[pred_count]])
+    #     pred_count += 1
 
     excel_data_mono = []
     for index, row in excel_data.iterrows():
@@ -36,10 +47,21 @@ def hello_world():
     cluster_centers_mono = model_mono.cluster_centers_  # список значений центроидов кластеров
 
     res_mono = []
-    pred_count = 0
-    for i in excel_data_mono:
-        res_mono.append([i, prediction_mono[pred_count]])
-        pred_count += 1
+
+    # все кластеры друг за другом
+    for i in range(len(model_mono.cluster_centers_)):
+        pred_count = 0
+        print(i, 'мега')
+        for row in excel_data_mono:
+            if prediction_mono[pred_count] == i:
+                res_mono.append([row, prediction_mono[pred_count]])
+            pred_count += 1
+
+    # все цвета по порядку изначальной последовательности
+    # pred_count = 0
+    # for i in excel_data_mono:
+    #     res_mono.append([i, prediction_mono[pred_count]])
+    #     pred_count += 1
 
     return render_template('index.html', res=res, cl_center=kmeans.cluster_centers_, res_mono=res_mono,
                            cl_center_mono=cluster_centers_mono)
